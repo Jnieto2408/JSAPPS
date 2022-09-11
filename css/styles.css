@@ -1,0 +1,249 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 100%; }
+
+body .index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem; }
+  body .index .title {
+    margin-top: 1rem;
+    min-width: 80px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 1px solid #000;
+    color: #000;
+    background: transparent; }
+    body .index .title:hover:after {
+      top: 0;
+      left: 0; }
+    body .index .title:after {
+      content: "";
+      width: 100%;
+      z-index: -1;
+      position: absolute;
+      height: 100%;
+      top: 5px;
+      left: 5px;
+      transition: 0.2s; }
+    body .index .title::after {
+      background-color: yellow; }
+  body .index div ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem; }
+    body .index div ul a {
+      text-decoration: none;
+      min-width: 80px;
+      height: 40px;
+      color: #fff;
+      padding: 5px 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      display: inline-block;
+      outline: none;
+      border: 1px solid #000;
+      color: #000;
+      background: transparent; }
+      body .index div ul a:hover:after {
+        top: 0;
+        left: 0; }
+      body .index div ul a:after {
+        content: "";
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+        height: 100%;
+        top: 5px;
+        left: 5px;
+        transition: 0.2s; }
+      body .index div ul a:after {
+        background-color: cyan; }
+
+body .menu {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-bottom: 1px solid gray; }
+  body .menu nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem; }
+    body .menu nav .logo {
+      min-width: 80px;
+      height: 40px;
+      color: #fff;
+      padding: 5px 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      display: inline-block;
+      outline: none;
+      border: 1px solid #000;
+      color: #000;
+      background: transparent; }
+      body .menu nav .logo:hover:after {
+        top: 0;
+        left: 0; }
+      body .menu nav .logo:after {
+        content: "";
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+        height: 100%;
+        top: 5px;
+        left: 5px;
+        transition: 0.2s; }
+      body .menu nav .logo:after {
+        background-color: yellow; }
+    body .menu nav ul {
+      list-style: none;
+      display: flex;
+      gap: 3rem; }
+      body .menu nav ul a {
+        text-decoration: none;
+        min-width: 80px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border: 1px solid #000;
+        color: #000;
+        background: transparent; }
+        body .menu nav ul a:hover:after {
+          top: 0;
+          left: 0; }
+        body .menu nav ul a:after {
+          content: "";
+          width: 100%;
+          z-index: -1;
+          position: absolute;
+          height: 100%;
+          top: 5px;
+          left: 5px;
+          transition: 0.2s; }
+        body .menu nav ul a:after {
+          background-color: cyan; }
+
+body .passenger {
+  text-align: center; }
+  body .passenger h2 {
+    margin-bottom: 0.5rem; }
+  body .passenger p {
+    margin-bottom: 1rem; }
+  body .passenger .pas-structure {
+    display: flex;
+    justify-content: center; }
+    body .passenger .pas-structure div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; }
+      body .passenger .pas-structure div button {
+        min-width: 80px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border: 1px solid #000;
+        color: #000;
+        background: transparent; }
+        body .passenger .pas-structure div button:hover:after {
+          top: 0;
+          left: 0; }
+        body .passenger .pas-structure div button:after {
+          content: "";
+          width: 100%;
+          z-index: -1;
+          position: absolute;
+          height: 100%;
+          top: 5px;
+          left: 5px;
+          transition: 0.2s; }
+        body .passenger .pas-structure div button:after {
+          background-color: #ef233c; }
+      body .passenger .pas-structure div div {
+        display: flex;
+        flex-direction: row; }
+        body .passenger .pas-structure div div .save {
+          min-width: 80px;
+          height: 40px;
+          color: #fff;
+          padding: 5px 10px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          display: inline-block;
+          outline: none;
+          border: 1px solid #000;
+          color: #000;
+          background: transparent; }
+          body .passenger .pas-structure div div .save:hover:after {
+            top: 0;
+            left: 0; }
+          body .passenger .pas-structure div div .save:after {
+            content: "";
+            width: 100%;
+            z-index: -1;
+            position: absolute;
+            height: 100%;
+            top: 5px;
+            left: 5px;
+            transition: 0.2s; }
+          body .passenger .pas-structure div div .save:after {
+            background-color: #24ec2e; }
+        body .passenger .pas-structure div div .reset {
+          min-width: 80px;
+          height: 40px;
+          color: #fff;
+          padding: 5px 10px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          display: inline-block;
+          outline: none;
+          border: 1px solid #000;
+          color: #000;
+          background: transparent; }
+          body .passenger .pas-structure div div .reset:hover:after {
+            top: 0;
+            left: 0; }
+          body .passenger .pas-structure div div .reset:after {
+            content: "";
+            width: 100%;
+            z-index: -1;
+            position: absolute;
+            height: 100%;
+            top: 5px;
+            left: 5px;
+            transition: 0.2s; }
+          body .passenger .pas-structure div div .reset:after {
+            background-color: #24ec2e; }
+      body .passenger .pas-structure div p {
+        max-width: 20ch; }
