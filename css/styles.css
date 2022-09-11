@@ -11,6 +11,7 @@ body .index {
   align-items: center;
   gap: 5rem; }
   body .index .title {
+    text-decoration: none;
     margin-top: 1rem;
     min-width: 80px;
     height: 40px;
@@ -84,6 +85,7 @@ body .menu {
     align-items: center;
     gap: 2rem; }
     body .menu nav .logo {
+      text-decoration: none;
       min-width: 80px;
       height: 40px;
       color: #fff;
