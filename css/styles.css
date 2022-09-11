@@ -249,3 +249,56 @@ body .passenger {
             background-color: #24ec2e; }
       body .passenger .pas-structure div p {
         max-width: 20ch; }
+
+body .calc {
+  display: flex;
+  justify-content: center; }
+  body .calc .grid-calc {
+    max-width: 400px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: "disp disp disp disp" "ac ac del div" "one two three mul" "four five six sum" "seven eight nine dec" "period cero result result"; }
+    body .calc .grid-calc button {
+      padding: 1rem; }
+    body .calc .grid-calc .display {
+      grid-area: disp;
+      border: 1px solid black;
+      padding: 1rem; }
+    body .calc .grid-calc .ac {
+      grid-area: ac; }
+    body .calc .grid-calc .del {
+      grid-area: del; }
+    body .calc .grid-calc .div {
+      grid-area: div; }
+    body .calc .grid-calc .one {
+      grid-area: one; }
+    body .calc .grid-calc .two {
+      grid-area: two; }
+    body .calc .grid-calc .three {
+      grid-area: three; }
+    body .calc .grid-calc .mul {
+      grid-area: mul; }
+    body .calc .grid-calc .four {
+      grid-area: four; }
+    body .calc .grid-calc .five {
+      grid-area: five; }
+    body .calc .grid-calc .six {
+      grid-area: six; }
+    body .calc .grid-calc .sum {
+      grid-area: sum; }
+    body .calc .grid-calc .seven {
+      grid-area: seven; }
+    body .calc .grid-calc .eight {
+      grid-area: eight; }
+    body .calc .grid-calc .nine {
+      grid-area: nine; }
+    body .calc .grid-calc .min {
+      grid-area: dec; }
+    body .calc .grid-calc .period {
+      grid-area: period; }
+    body .calc .grid-calc .zero {
+      grid-area: cero; }
+    body .calc .grid-calc .result {
+      grid-area: result; }
