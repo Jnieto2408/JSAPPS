@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/styles.css">
-    <title>PassengerCounter</title>
-</head>
-<body>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
     <header class="menu">
-        <nav>
-            <a href="../index.html" class="logo">JS APPS</a>
-            <ul>
-                <a href="./passenger.html">
-                    <li>PassengerCounter</li>
-                </a>
-                <a href="./calculator.html">
-                    <li>Calculator</li>
-                </a>
-                <a href="">
-                    <li>BlackJack</li>
-                </a>
-            </ul>
-        </nav>
+      <nav>
+        <a href="../index.html" class="logo">JS APPS</a>
+        <ul>
+          <a href="./passenger.html">
+            <li>PassengerCounter</li>
+          </a>
+          <a href="./calculator.html">
+            <li>Calculator</li>
+          </a>
+          <a href="">
+            <li>BlackJack</li>
+          </a>
+        </ul>
+      </nav>
     </header>
     <main class="calc">
-        <h1>Calculator APP</h1>
-        <div class="grid-calc">
-            <span id="result-el" class="display"></span>
-            <button class="ac">AC</button>
-            <button class="del">DEL</button>
-            <button class="div">÷</button>
-            <button class="one">1</button>
-            <button class="two">2</button>
-            <button class="three">3</button>
-            <button class="mul">x</button>
-            <button class="four">4</button>
-            <button class="five">5</button>
-            <button class="six">6</button>
-            <button class="sum">+</button>
-            <button class="seven">7</button>
-            <button class="eight">8</button>
-            <button class="nine">9</button>
-            <button class="min">-</button>
-            <button class="period">.</button>
-            <button class="zero">0</button>
-            <button class="result">=</button>
+      <h1>Calculator APP</h1>
+      <div class="grid-calc">
+        <div class="display">
+          <div class="previous-operand"></div>
+          <div class="current-operand"></div>
         </div>
+        <button class="ac">AC</button>
+        <button class="del">DEL</button>
+        <button class="div">÷</button>
+        <button class="one">1</button>
+        <button class="two">2</button>
+        <button class="three">3</button>
+        <button class="mul">x</button>
+        <button class="four">4</button>
+        <button class="five">5</button>
+        <button class="six">6</button>
+        <button class="sum">+</button>
+        <button class="seven">7</button>
+        <button class="eight">8</button>
+        <button class="nine">9</button>
+        <button class="min">-</button>
+        <button class="period">.</button>
+        <button class="zero">0</button>
+        <button class="result">=</button>
+      </div>
     </main>
     <!-- JS -->
     <script src="../main.js"></script>
-</body>
+  </body>
 </html>
