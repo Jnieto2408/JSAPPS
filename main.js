@@ -1,3 +1,4 @@
+/* Counter APP */
 let count = 0;
 let saves = 0;
 console.log(count);
@@ -34,3 +35,5 @@ function reset(){
     saves = 0;
     countEl.innerText = count;
 };
+/* Guess Number APP */
+
