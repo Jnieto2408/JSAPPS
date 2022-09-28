@@ -219,34 +219,6 @@ body .counter {
             transition: 0.2s; }
           body .counter .pas-structure div div .save:after {
             background-color: #24ec2e; }
-        body .counter .pas-structure div div .reset {
-          min-width: 80px;
-          height: 40px;
-          color: #fff;
-          padding: 5px 10px;
-          font-weight: bold;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          position: relative;
-          display: inline-block;
-          outline: none;
-          border: 1px solid #000;
-          color: #000;
-          background: transparent; }
-          body .counter .pas-structure div div .reset:hover:after {
-            top: 0;
-            left: 0; }
-          body .counter .pas-structure div div .reset:after {
-            content: "";
-            width: 100%;
-            z-index: -1;
-            position: absolute;
-            height: 100%;
-            top: 5px;
-            left: 5px;
-            transition: 0.2s; }
-          body .counter .pas-structure div div .reset:after {
-            background-color: #24ec2e; }
       body .counter .pas-structure div p {
         max-width: 20ch; }
 
@@ -305,17 +277,48 @@ body .calc {
     body .calc .grid-calc .result {
       grid-area: result; }
 
-body .guessnumber h2 {
-  text-align: center; }
-
-body .guessnumber p {
-  margin: 1rem 0rem 1rem;
-  text-align: center; }
-
-body .guessnumber div {
+body .guessnumber {
   display: flex;
-  justify-content: center; }
-  body .guessnumber div button {
+  flex-direction: column;
+  align-items: center; }
+  body .guessnumber p {
+    margin: 1rem 0rem 1rem; }
+  body .guessnumber div {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; }
+    body .guessnumber div button {
+      min-width: 80px;
+      height: 40px;
+      color: #fff;
+      padding: 5px 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      display: inline-block;
+      outline: none;
+      border: 1px solid #000;
+      color: #000;
+      background: transparent; }
+      body .guessnumber div button:hover:after {
+        top: 0;
+        left: 0; }
+      body .guessnumber div button:after {
+        content: "";
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+        height: 100%;
+        top: 5px;
+        left: 5px;
+        transition: 0.2s; }
+      body .guessnumber div button:after {
+        background-color: #ef233c; }
+  body .guessnumber input {
+    margin-bottom: 1rem;
+    padding: 0.5rem; }
+  body .guessnumber button {
     min-width: 80px;
     height: 40px;
     color: #fff;
@@ -329,10 +332,10 @@ body .guessnumber div {
     border: 1px solid #000;
     color: #000;
     background: transparent; }
-    body .guessnumber div button:hover:after {
+    body .guessnumber button:hover:after {
       top: 0;
       left: 0; }
-    body .guessnumber div button:after {
+    body .guessnumber button:after {
       content: "";
       width: 100%;
       z-index: -1;
@@ -341,5 +344,5 @@ body .guessnumber div {
       top: 5px;
       left: 5px;
       transition: 0.2s; }
-    body .guessnumber div button:after {
-      background-color: #ef233c; }
+    body .guessnumber button:after {
+      background-color: #24ec2e; }
