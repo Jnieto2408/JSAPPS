@@ -38,7 +38,9 @@ function reset(){
 let tries = 3;
 let statusGuess = document.getElementById("status-guess");
 let infoGuess = document.getElementById("info-guess");
+let motGuess = document.getElementById("mot-guess");
 let rndNumber = Math.floor(Math.random() * 11);
+const resetter = 3;
 function startGuess(){
     if(tries == 3){
     statusGuess.innerText = ("Lets start! You have " + tries + " oportunities left");
@@ -49,10 +51,12 @@ function startGuess(){
 }
 function resetGuess(){
     tries = 3;
-    statusGuess.innerText = "";
-    rndNumber = Math.floor(Math.random() * 10) + 1;
+    statusGuess.innerText = ("");
     infoGuess.innerText = ("");
-    console.log(rndNumber);
+    for(let i = 0; i < resetter; i++){
+        rndNumber = Math.floor(Math.random() * 10) + 1;
+        console.log(rndNumber);
+    }
 }
 function tryGuess(){
     let numberElection = document.getElementById("number-guess").value;
