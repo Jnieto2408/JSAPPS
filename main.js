@@ -39,7 +39,7 @@ let tries = 3;
 let statusGuess = document.getElementById("status-guess");
 let infoGuess = document.getElementById("info-guess");
 let motGuess = document.getElementById("mot-guess");
-let rndNumber = Math.floor(Math.random() * 11);
+let rndNumber = Math.floor(Math.random() * 10) + 1;
 const resetter = 3;
 function startGuess(){
     if(tries == 3){
@@ -53,10 +53,8 @@ function resetGuess(){
     tries = 3;
     statusGuess.innerText = ("");
     infoGuess.innerText = ("");
-    for(let i = 0; i < resetter; i++){
-        rndNumber = Math.floor(Math.random() * 10) + 1;
-        console.log(rndNumber);
-    }
+    rndNumber = Math.floor(Math.random() * 10) + 1;
+    console.log(rndNumber);
 }
 function tryGuess(){
     let numberElection = document.getElementById("number-guess").value;
