@@ -1,39 +1,42 @@
 /* Counter APP */
 let count = 0;
 let saves = 0;
-let countEl = document.getElementById("count-el");
-let saveEl = document.getElementById("save-el");
-
-function increment(){
+const countNumber = document.getElementById("countNumber");
+const incrementBtn = document.getElementById("incrementBtn");
+incrementBtn.onclick = () => {
     count = count + 1;
     console.log(count);
-    countEl.innerText = count;
-};
-function decrease(){
+    countNumber.innerText = count;
+}
+const decreaseBtn = document.getElementById("decreaseBtn");
+decreaseBtn.onclick = () => {
     count = count - 1;
     console.log(count);
-    countEl.innerText = count;
-};
-function save(){
+    countNumber.innerText = count;
+}
+const saveCount = document.getElementById("saveCount");
+const saveNumber = document.getElementById("saveNumber");
+saveCount.onclick = () => {
     if (saves == 0){
         let countStr = count;
-        saveEl.textContent += countStr;
+        saveNumber.textContent += countStr;
         saves = 1;
         count = 0;
     } else {
         let countStr = " / " + count;
-        saveEl.textContent += countStr;
+        saveNumber.textContent += countStr;
         count = 0;
     }
-    countEl.innerText = count;
-};
-function reset(){
+    countNumber.innerText = count;
+}
+const resetCount = document.getElementById("resetCount");
+resetCount.onclick = () => {
     let countStr = "Previous entries: ";
-    saveEl.textContent = countStr;
+    saveNumber.textContent = countStr;
     count = 0;
     saves = 0;
-    countEl.innerText = count;
-};
+    countNumber.innerText = count;
+}
 /* Guess Number APP */
 let tries = 3;
 let statusGuess = document.getElementById("status-guess");

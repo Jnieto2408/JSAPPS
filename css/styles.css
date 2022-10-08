@@ -153,14 +153,14 @@ body .counter {
     margin-bottom: 0.5rem; }
   body .counter p {
     margin-bottom: 1rem; }
-  body .counter .pas-structure {
+  body .counter .counterStructure {
     display: flex;
     justify-content: center; }
-    body .counter .pas-structure div {
+    body .counter .counterStructure div {
       display: flex;
       flex-direction: column;
       gap: 1rem; }
-      body .counter .pas-structure div button {
+      body .counter .counterStructure div button {
         min-width: 80px;
         height: 40px;
         color: #fff;
@@ -174,10 +174,10 @@ body .counter {
         border: 1px solid #000;
         color: #000;
         background: transparent; }
-        body .counter .pas-structure div button:hover:after {
+        body .counter .counterStructure div button:hover:after {
           top: 0;
           left: 0; }
-        body .counter .pas-structure div button:after {
+        body .counter .counterStructure div button:after {
           content: "";
           width: 100%;
           z-index: -1;
@@ -186,12 +186,12 @@ body .counter {
           top: 5px;
           left: 5px;
           transition: 0.2s; }
-        body .counter .pas-structure div button:after {
+        body .counter .counterStructure div button:after {
           background-color: #ef233c; }
-      body .counter .pas-structure div div {
+      body .counter .counterStructure div div {
         display: flex;
         flex-direction: row; }
-        body .counter .pas-structure div div .save {
+        body .counter .counterStructure div div .save {
           min-width: 80px;
           height: 40px;
           color: #fff;
@@ -205,10 +205,10 @@ body .counter {
           border: 1px solid #000;
           color: #000;
           background: transparent; }
-          body .counter .pas-structure div div .save:hover:after {
+          body .counter .counterStructure div div .save:hover:after {
             top: 0;
             left: 0; }
-          body .counter .pas-structure div div .save:after {
+          body .counter .counterStructure div div .save:after {
             content: "";
             width: 100%;
             z-index: -1;
@@ -217,9 +217,9 @@ body .counter {
             top: 5px;
             left: 5px;
             transition: 0.2s; }
-          body .counter .pas-structure div div .save:after {
+          body .counter .counterStructure div div .save:after {
             background-color: #24ec2e; }
-      body .counter .pas-structure div p {
+      body .counter .counterStructure div p {
         max-width: 20ch; }
 
 body .calc {
