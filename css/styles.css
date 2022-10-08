@@ -227,54 +227,54 @@ body .calc {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem; }
-  body .calc .grid-calc {
+  body .calc .gridCalculator {
     max-width: 400px;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas: "disp disp disp disp" "ac ac del div" "one two three mul" "four five six sum" "seven eight nine dec" "period cero result result"; }
-    body .calc .grid-calc button {
+    body .calc .gridCalculator button {
       padding: 1rem; }
-    body .calc .grid-calc .display {
+    body .calc .gridCalculator .display {
       grid-area: disp;
       border: 1px solid black;
       padding: 1rem; }
-    body .calc .grid-calc .ac {
+    body .calc .gridCalculator .ac {
       grid-area: ac; }
-    body .calc .grid-calc .del {
+    body .calc .gridCalculator .del {
       grid-area: del; }
-    body .calc .grid-calc .div {
+    body .calc .gridCalculator .div {
       grid-area: div; }
-    body .calc .grid-calc .one {
+    body .calc .gridCalculator .one {
       grid-area: one; }
-    body .calc .grid-calc .two {
+    body .calc .gridCalculator .two {
       grid-area: two; }
-    body .calc .grid-calc .three {
+    body .calc .gridCalculator .three {
       grid-area: three; }
-    body .calc .grid-calc .mul {
+    body .calc .gridCalculator .mul {
       grid-area: mul; }
-    body .calc .grid-calc .four {
+    body .calc .gridCalculator .four {
       grid-area: four; }
-    body .calc .grid-calc .five {
+    body .calc .gridCalculator .five {
       grid-area: five; }
-    body .calc .grid-calc .six {
+    body .calc .gridCalculator .six {
       grid-area: six; }
-    body .calc .grid-calc .sum {
+    body .calc .gridCalculator .sum {
       grid-area: sum; }
-    body .calc .grid-calc .seven {
+    body .calc .gridCalculator .seven {
       grid-area: seven; }
-    body .calc .grid-calc .eight {
+    body .calc .gridCalculator .eight {
       grid-area: eight; }
-    body .calc .grid-calc .nine {
+    body .calc .gridCalculator .nine {
       grid-area: nine; }
-    body .calc .grid-calc .min {
+    body .calc .gridCalculator .min {
       grid-area: dec; }
-    body .calc .grid-calc .period {
+    body .calc .gridCalculator .period {
       grid-area: period; }
-    body .calc .grid-calc .zero {
+    body .calc .gridCalculator .zero {
       grid-area: cero; }
-    body .calc .grid-calc .result {
+    body .calc .gridCalculator .result {
       grid-area: result; }
 
 body .guessnumber {
