@@ -417,9 +417,38 @@ body .todo {
       width: 80vw;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin: 1rem 0rem; }
-      body .todo .todoStructure .todoPost .options i {
-        margin: 0rem 0.2rem; }
+      body .todo .todoStructure .todoPost .options button {
+        margin: 0rem 0.2rem;
+        min-width: 80px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border: 1px solid #000;
+        color: #000;
+        background: transparent;
+        min-width: 5px; }
+        body .todo .todoStructure .todoPost .options button:hover:after {
+          top: 0;
+          left: 0; }
+        body .todo .todoStructure .todoPost .options button:after {
+          content: "";
+          width: 100%;
+          z-index: -1;
+          position: absolute;
+          height: 100%;
+          top: 5px;
+          left: 5px;
+          transition: 0.2s; }
+        body .todo .todoStructure .todoPost .options button::after {
+          background-color: #ef233c; }
     body .todo .todoStructure #posts {
       display: flex;
       flex-direction: column; }

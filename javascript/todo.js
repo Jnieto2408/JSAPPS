@@ -17,9 +17,8 @@ const createTodoPost = () => {
         <p>${priority.value}</p>
         <p>${todoNote.value}</p>
         <span class="options">
-            <i id="checkToDo" class="fas fa-check"></i>
-            <i id="editToDo" class="fas fa-edit"></i>
-            <i id="deleteToDo" class="fas fa-trash-alt"></i>
+            <button onClick="checkToDo(this)" class="fas fa-check"></button>
+            <button onClick="deleteToDo(this)" class="fas fa-trash-alt"></button>
         </span>
     </div>
     `;
@@ -46,3 +45,6 @@ formTodo.addEventListener("submit",(e) => {
     formValidation();
     formTodo.reset();
 });
+const deleteToDo = (e) => {
+    e.parentElement.parentElement.remove();
+}
