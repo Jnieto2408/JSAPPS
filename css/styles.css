@@ -364,7 +364,10 @@ body .todo {
       height: 10vh; }
     body .todo .todoNoteStructure div {
       display: flex;
-      justify-content: flex-end; }
+      justify-content: space-between; }
+      body .todo .todoNoteStructure div div {
+        display: flex;
+        align-items: center; }
       body .todo .todoNoteStructure div button {
         min-width: 80px;
         height: 40px;

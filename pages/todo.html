@@ -37,13 +37,21 @@
             <h2>Instructions:</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati nam, blanditiis pariatur aliquam ea iusto?</p>
         </div>
-        <div class="todoNoteStructure">
+        <form id="formTodo" class="todoNoteStructure">
             <h3>Note:</h3>
-            <textarea id="" cols="30" rows="10"></textarea>
+            <textarea id="todoNote" cols="30" rows="10"></textarea>
             <div>
-                <button>Post</button>
+                <div>
+                    <label for="priority">Priority:</label>
+                    <select name="priority" id="priority">
+                        <option value="low">low</option>
+                        <option value="mid">mid</option>
+                        <option value="high">high</option>
+                    </select>
+                </div>
+                <button id="todoPost">Post</button>
             </div>
-        </div>
+        </form>
         <div class="todoStructure">
             <h4>To-Do List</h4>
         </div>
