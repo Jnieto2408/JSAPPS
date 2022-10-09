@@ -277,17 +277,17 @@ body .calc {
     body .calc .gridCalculator .result {
       grid-area: result; }
 
-body .guessnumber {
+body .guessNumber {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  body .guessnumber p {
+  body .guessNumber p {
     margin: 1rem 0rem 1rem; }
-  body .guessnumber div {
+  body .guessNumber div {
     display: flex;
     justify-content: center;
     gap: 1rem; }
-    body .guessnumber div button {
+    body .guessNumber div button {
       min-width: 80px;
       height: 40px;
       color: #fff;
@@ -301,10 +301,10 @@ body .guessnumber {
       border: 1px solid #000;
       color: #000;
       background: transparent; }
-      body .guessnumber div button:hover:after {
+      body .guessNumber div button:hover:after {
         top: 0;
         left: 0; }
-      body .guessnumber div button:after {
+      body .guessNumber div button:after {
         content: "";
         width: 100%;
         z-index: -1;
@@ -313,12 +313,12 @@ body .guessnumber {
         top: 5px;
         left: 5px;
         transition: 0.2s; }
-      body .guessnumber div button:after {
+      body .guessNumber div button:after {
         background-color: #ef233c; }
-  body .guessnumber input {
+  body .guessNumber input {
     margin-bottom: 1rem;
     padding: 0.5rem; }
-  body .guessnumber button {
+  body .guessNumber button {
     min-width: 80px;
     height: 40px;
     color: #fff;
@@ -332,10 +332,10 @@ body .guessnumber {
     border: 1px solid #000;
     color: #000;
     background: transparent; }
-    body .guessnumber button:hover:after {
+    body .guessNumber button:hover:after {
       top: 0;
       left: 0; }
-    body .guessnumber button:after {
+    body .guessNumber button:after {
       content: "";
       width: 100%;
       z-index: -1;
@@ -344,5 +344,5 @@ body .guessnumber {
       top: 5px;
       left: 5px;
       transition: 0.2s; }
-    body .guessnumber button:after {
+    body .guessNumber button:after {
       background-color: #24ec2e; }
