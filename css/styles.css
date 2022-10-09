@@ -346,3 +346,53 @@ body .guessNumber {
       transition: 0.2s; }
     body .guessNumber button:after {
       background-color: #24ec2e; }
+
+body .todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; }
+  body .todo div {
+    display: flex; }
+    body .todo div h2 {
+      margin: 0rem 0.5rem; }
+  body .todo .todoNoteStructure {
+    display: flex;
+    flex-direction: column; }
+    body .todo .todoNoteStructure textarea {
+      width: 40vw;
+      height: 10vh; }
+    body .todo .todoNoteStructure div {
+      display: flex;
+      justify-content: flex-end; }
+      body .todo .todoNoteStructure div button {
+        min-width: 80px;
+        height: 40px;
+        color: #fff;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border: 1px solid #000;
+        color: #000;
+        background: transparent;
+        margin-top: 0.5rem; }
+        body .todo .todoNoteStructure div button:hover:after {
+          top: 0;
+          left: 0; }
+        body .todo .todoNoteStructure div button:after {
+          content: "";
+          width: 100%;
+          z-index: -1;
+          position: absolute;
+          height: 100%;
+          top: 5px;
+          left: 5px;
+          transition: 0.2s; }
+        body .todo .todoNoteStructure div button:after {
+          background-color: #24ec2e; }
+  body .todo .todoStructure {
+    margin-top: 1.5rem; }
