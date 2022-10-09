@@ -408,6 +408,11 @@ body .todo {
     margin-top: 1.5rem; }
     body .todo .todoStructure h4 {
       margin-bottom: 1.5rem; }
+    body .todo .todoStructure .menuTodo {
+      width: 80vw;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between; }
     body .todo .todoStructure .todoPost {
       width: 80vw;
       display: flex;
@@ -415,3 +420,6 @@ body .todo {
       margin: 1rem 0rem; }
       body .todo .todoStructure .todoPost .options i {
         margin: 0rem 0.2rem; }
+    body .todo .todoStructure #posts {
+      display: flex;
+      flex-direction: column; }

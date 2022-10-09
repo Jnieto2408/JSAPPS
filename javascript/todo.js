@@ -10,7 +10,21 @@ class Todo {
 const arrayTodo = [];
 const formTodo = document.getElementById("formTodo");
 const msgTodo = document.getElementById("msgTodo");
-let formValidation = () => {
+const posts = document.getElementById("posts");
+const createTodoPost = () => {
+    posts.innerHTML += `
+    <div class="todoPost">
+        <p>${priority.value}</p>
+        <p>${todoNote.value}</p>
+        <span class="options">
+            <i id="checkToDo" class="fas fa-check"></i>
+            <i id="editToDo" class="fas fa-edit"></i>
+            <i id="deleteToDo" class="fas fa-trash-alt"></i>
+        </span>
+    </div>
+    `;
+};
+const formValidation = () => {
     if (todoNote.value == ""){
         msgTodo.innerText = "Post cannot be blank";
         console.log("failure, retry");
@@ -23,6 +37,7 @@ let formValidation = () => {
         const todo = new Todo(todoNote.value, priority.value, "incomplete", date);
         arrayTodo.push(todo);
         console.log(arrayTodo);
+        createTodoPost();
     }
 };
 formTodo.addEventListener("submit",(e) => {
@@ -30,4 +45,4 @@ formTodo.addEventListener("submit",(e) => {
     console.log("To-Do post");
     formValidation();
     formTodo.reset();
-})
+});
