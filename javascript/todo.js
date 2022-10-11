@@ -1,30 +1,18 @@
 /* To-Do APP */
 class Todo {
-    constructor(note, priority, status, date){
+    constructor(note, priority, date){
+        this.id = Math.random().toString()
         this.note = note;
         this.priority = priority;
-        this.status = status;
         this.date = date;
     }
 }
-const arrayTodo = [];
+let arrayTodo = [];
 const formTodo = document.getElementById("formTodo");
 const msgTodo = document.getElementById("msgTodo");
 const posts = document.getElementById("posts");
-const createTodoPost = () => {
-    posts.innerHTML += `
-    <div class="todoPost">
-        <p>${priority.value}</p>
-        <p>${todoNote.value}</p>
-        <span class="options">
-            <button onClick="checkToDo(this)" class="fas fa-check"></button>
-            <button onClick="deleteToDo(this)" class="fas fa-trash-alt"></button>
-        </span>
-    </div>
-    `;
-};
 const formValidation = () => {
-    if (todoNote.value == ""){
+    if (todoNote.value === ""){
         msgTodo.innerText = "Post cannot be blank";
         console.log("failure, retry");
     } else {
@@ -33,11 +21,22 @@ const formValidation = () => {
         const todoNote = document.getElementById("todoNote");
         const priority = document.getElementById("priority");
         const date = new Date;
-        const todo = new Todo(todoNote.value, priority.value, "incomplete", date);
+        const todo = new Todo(todoNote.value, priority.value, date);
         arrayTodo.push(todo);
         console.log(arrayTodo);
-        createTodoPost();
+        createTodoPost(todo);
     }
+};
+const createTodoPost = ({priority, note, id}) => {
+    posts.innerHTML += `
+    <div class="todoPost" id="${id}">
+        <p>${priority}</p>
+        <p>${note}</p>
+        <span class="options">
+            <button onClick="deleteToDo(this)" class="fas fa-trash-alt"></button>
+        </span>
+    </div>
+    `;
 };
 formTodo.addEventListener("submit",(e) => {
     e.preventDefault();
@@ -47,4 +46,7 @@ formTodo.addEventListener("submit",(e) => {
 });
 const deleteToDo = (e) => {
     e.parentElement.parentElement.remove();
-}
+    const todoId = e.parentElement.parentElement.id;
+    arrayTodo = arrayTodo.filter((currentTodo) => currentTodo.id !== todoId);
+    console.log(arrayTodo);
+};
