@@ -35,7 +35,7 @@
     </header>
     <main class="blackjack">
         <h1>BlackJack</h1>
-        <div class="instructions">
+        <div class="instructions" id="remove">
             <h2>Instructions:</h2>
             <p>The goal is to get rich as fast as you can! You have three lifes until you reach 100 grand, if you go broke before that mark you will loose a life and restart the game. After that you have to reach the goal of 1 million dollars on your own! Can you beat the house? </p>
         </div>
@@ -45,6 +45,10 @@
                 <div class="money">
                     <p>Money:</p>
                     <p class="cash" id="money">$1000</p>
+                </div>
+                <div class="dealer">
+                    <p><b>Dealer</b></p>
+                    <p>Card Count:<span id="dealerCard">21</span></p>
                 </div>
                 <div class="lifes">
                     <div>Lifes</div>
@@ -56,7 +60,13 @@
                 </div>
             </div>
             <div class="actualGame">
-
+                <div id="dealerGame">
+                    <img class="card" src="../img/cards/BACK.png">
+                </div>
+                <div id="yourGame">
+                    <img class="card" src="../img/cards/BACK.png">
+                    <img class="card" src="../img/cards/BACK.png">
+                </div>
             </div>
             <div class="gameControls">
                 <div class="betSystem">
@@ -66,6 +76,10 @@
                         <button id="10k">10k</button>
                         <button id="100k">100k</button>
                     </div>
+                </div>
+                <div class="you">
+                    <p>Card Count:<span id="youCard">21</span></p>
+                    <p><b>YOU</b></p>
                 </div>
                 <div class="blackjackSystem">
                     <button class="placeBet" id="placeBet">Place Bet</button>

@@ -464,8 +464,6 @@ body .blackjack {
   body .blackjack .instructions {
     display: flex;
     padding: 0rem 8rem; }
-    body .blackjack .instructions h2 {
-      margin: 0rem 0.5rem; }
   body .blackjack button {
     margin: 0rem 0.2rem;
     min-width: 80px;
@@ -496,7 +494,7 @@ body .blackjack {
     body .blackjack button::after {
       background-color: #ef233c; }
   body .blackjack div .headGame {
-    width: 80vw;
+    width: 100vw;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -508,13 +506,35 @@ body .blackjack {
       body .blackjack div .headGame .money .cash {
         color: white;
         margin-left: 0.5rem; }
+    body .blackjack div .headGame .dealer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem; }
     body .blackjack div .headGame .lifes {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem; }
       body .blackjack div .headGame .lifes .hearts i {
-        margin: 0 1rem; }
+        margin: 0 1rem;
+        color: red; }
+  body .blackjack div .actualGame {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 2rem; }
+    body .blackjack div .actualGame #dealerGame .card {
+      height: 130px;
+      width: 80px;
+      margin: 0rem 0.5rem; }
+    body .blackjack div .actualGame #yourGame .card {
+      height: 130px;
+      width: 80px;
+      margin: 0rem 0.5rem; }
   body .blackjack div .gameControls {
     margin-top: 2rem;
     display: flex;
@@ -555,5 +575,10 @@ body .blackjack {
           transition: 0.2s; }
         body .blackjack div .gameControls .betSystem div button::after {
           background-color: #24ec2e; }
+    body .blackjack div .gameControls .you {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem; }
     body .blackjack div .gameControls .blackjackSystem .placeBet::after {
       background-color: yellow; }
