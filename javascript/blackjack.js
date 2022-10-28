@@ -2,13 +2,7 @@
 const start = document.getElementById("start");
 const remove = document.getElementById("remove");
 const game = document.getElementById("game");
-const dealerGame = document.getElementById("dealerGame");
-const yourGame = document.getElementById("yourGame");
-const hit = document.getElementById("hit");
-const stay = document.getElementById("stay");
-const oneK = document.getElementById("1k");
-const tenK = document.getElementById("10k");
-const hundredK = document.getElementById("100k");
+const hiddenCard = document.getElementById("hidden");
 
 let dealerSum = 0;
 let yourSum = 0;
@@ -17,6 +11,11 @@ let yourAceCount = 0;
 const canHit = true;
 let deck = [];
 let hidden = "";
+let money = 1000;
+let theBet = 0;
+let lives = 3;
+
+
 
 start.addEventListener("click", () => {
     start.style.display= "none";
@@ -49,16 +48,15 @@ const startGame = () => {
                             <div id="dealerGame">
                                 <img class="card" id="hidden" src="../img/cards/BACK.png">
                             </div>
-                            <div id="yourGame">
-                            </div>
+                            <div id="yourGame"></div>
                         </div>
                         <div class="gameControls">
                             <div class="betSystem">
                                 <p>CURRENT BET:<span id="currentBet">$1000</span></p>
                                 <div>
-                                    <button id="1k">1k</button>
-                                    <button id="10k">10k</button>
-                                    <button id="100k">100k</button>
+                                    <button onClick="oneK()">1k</button>
+                                    <button onClick="tenK()">10k</button>
+                                    <button onClick="hundredK()">100k</button>
                                 </div>
                             </div>
                             <div class="you">
@@ -66,34 +64,15 @@ const startGame = () => {
                                 <p><b>YOU</b></p>
                             </div>
                             <div class="blackjackSystem">
-                                <button class="placeBet" id="placeBet">Place Bet</button>
-                                <button id="hit">Hit</button>
-                                <button id="stay">Stay</button>
+                                <button class="placeBet" onClick="placeBet()">Place Bet</button>
+                                <button onClick="hitMe()">Hit</button>
+                                <button onClick="stayPut()">Stay</button>
                             </div>
                         </div>
     `
     hidden = deck.pop();
     dealerSum += getValue(hidden);
     dealerAceCount += checkAce(hidden);
-    while (dealerSum < 17){
-        let cardImg = document.createElement("img");
-        let card = deck.pop();
-        cardImg.src= "../img/cards/" + card + ".png";
-        cardImg.className= "card";
-        dealerSum += getValue(card);
-        dealerAceCount += checkAce(card);
-        dealerGame.append(cardImg);
-    }
-    console.log(dealerSum)
-    for(let i = 0; i <2; i++){
-        let cardImg = document.createElement("img");
-        let card = deck.pop();
-        cardImg.src= "../img/cards/" + card + ".png";
-        cardImg.className= "card";
-        yourSum += getValue(card);
-        yourAceCount += checkAce(card);
-        yourGame.append(cardImg);
-    }
 };
 const buidDeck = () => {
     const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -132,4 +111,63 @@ const checkAce = (card) => {
         return 1;
     }
     return 0;
+}
+const hitMe = () => {
+    if(!canHit){
+        return
+    }
+    let cardImg = document.createElement("img");
+    let card = deck.pop();
+    cardImg.src= "../img/cards/" + card + ".png";
+    cardImg.className= "card";
+    yourSum += getValue(card);
+    yourAceCount += checkAce(card);
+    yourGame.append(cardImg);
+    if(reduceAce(yourSum, yourAceCount) > 21){
+        canHit = false;
+    }
+}
+const reduceAce = (yourSum, yourAceCount) => {
+    while(yourSum > 21 && yourAceCount > 0){
+        yourSum -= 10;
+        yourAceCount -= 1;
+    }
+    return yourSum;
+}
+const stayPut = () => {
+    dealerSum = reduceAce(dealerSum, dealerAceCount);
+    yourSum = reduceAce(yourSum, yourAceCount);
+    canHit = false;
+    hiddenCard.src= "../img/cards/" + hidden + ".png";
+}
+const oneK = () => {
+    console.log("1k");
+}
+const tenK = () => {
+    console.log("10k");
+}
+const hundredK = () => {
+    console.log("100k");
+}
+const placeBet = () =>{
+    console.log("placeBet");
+        while (dealerSum < 17){
+        let cardImg = document.createElement("img");
+        let card = deck.pop();
+        cardImg.src= "../img/cards/" + card + ".png";
+        cardImg.className= "card";
+        dealerSum += getValue(card);
+        dealerAceCount += checkAce(card);
+        document.getElementById("dealerGame").append(cardImg);
+    }
+    console.log(dealerSum)
+    for(let i = 0; i <2; i++){
+        let cardImg = document.createElement("img");
+        let card = deck.pop();
+        cardImg.src= "../img/cards/" + card + ".png";
+        cardImg.className= "card";
+        yourSum += getValue(card);
+        yourAceCount += checkAce(card);
+        document.getElementById("yourGame").append(cardImg);
+    }
 }
