@@ -35,30 +35,47 @@
     </header>
     <main class="blackjack">
         <h1>BlackJack</h1>
-        <div>
+        <div class="instructions">
             <h2>Instructions:</h2>
-            <p>The goal is to get rich as fast as you can! You have three lifes if you go broke until you reach 10 grand, after that you have to reach the goal of 100 gran on your own! Can you beat the house? </p>
+            <p>The goal is to get rich as fast as you can! You have three lifes until you reach 100 grand, if you go broke before that mark you will loose a life and restart the game. After that you have to reach the goal of 1 million dollars on your own! Can you beat the house? </p>
         </div>
         <button id="start">Start Game</button>
         <div id="game">
             <div class="headGame">
                 <div class="money">
-                    <p>Money:  </p>
-                    <p id="money">$123434</p>
+                    <p>Money:</p>
+                    <p class="cash" id="money">$1000</p>
                 </div>
                 <div class="lifes">
                     <div>Lifes</div>
-                    <div>
+                    <div class="hearts">
                         <i class="fa fa-heart" id="h1"></i>
                         <i class="fa fa-heart" id="h2"></i>
                         <i class="fa fa-heart" id="h3"></i>
                     </div>
                 </div>
             </div>
+            <div class="actualGame">
 
+            </div>
+            <div class="gameControls">
+                <div class="betSystem">
+                    <p>CURRENT BET:<span id="currentBet">$1000</span></p>
+                    <div>
+                        <button id="1k">1k</button>
+                        <button id="10k">10k</button>
+                        <button id="100k">100k</button>
+                    </div>
+                </div>
+                <div class="blackjackSystem">
+                    <button class="placeBet" id="placeBet">Place Bet</button>
+                    <button id="hit">Hit</button>
+                    <button id="stay">Stay</button>
+                </div>
+            </div>
         </div>
     </main>
     <!-- JS -->
-    <script src="../javascript/blackjack.js"></>
+    <script src="../javascript/blackjack.js"></script>
 </body>
 </html>
