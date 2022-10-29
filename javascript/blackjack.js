@@ -1,4 +1,6 @@
 /* BlackJack APP */
+
+/* Declaramos variables iniciales */
 const start = document.getElementById("start");
 const remove = document.getElementById("remove");
 const game = document.getElementById("game");
@@ -7,15 +9,14 @@ let dealerSum = 0;
 let yourSum = 0;
 let dealerAceCount = 0;
 let yourAceCount = 0;
-let canHit = true;
+let canHit = false;
 let deck = [];
 let hidden = "";
 let money = 1000;
 let theBet = 0;
 let lives = 3;
 
-
-
+/* Inicializamos el juego */
 start.addEventListener("click", () => {
     start.style.display= "none";
     remove.style.display= "none";
@@ -24,6 +25,7 @@ start.addEventListener("click", () => {
     startGame();
 })
 const startGame = () => {
+    game.innerHTML = "";
     game.innerHTML += `
                         <div class="headGame">
                             <div class="money">
@@ -69,18 +71,19 @@ const startGame = () => {
                             </div>
                         </div>
     `
-    hidden = deck.pop();
-    dealerSum += getValue(hidden);
+    hidden = deck.pop(); //seleccionamos carta escondida del dealer
+    dealerSum += getValue(hidden); //suma de cartas del dealer
     console.log("hidden value: ", dealerSum);
-    dealerAceCount += checkAce(hidden);
+    dealerAceCount += checkAce(hidden); //revisamos si la carta es un A
     let cardImg = document.createElement("img");
-    let card = deck.pop();
+    let card = deck.pop(); //seleccionamos segunda carta del dealer
     cardImg.src= "../img/cards/" + card + ".png";
     cardImg.className= "card";
-    document.getElementById("dealerGame").append(cardImg);
-    dealerSum += getValue(card);
+    document.getElementById("dealerGame").append(cardImg); //la agregamos al DOM
+    dealerSum += getValue(card); //suma de cartas del dealer
     console.log("First dealer sum: ", dealerSum);
 };
+/* Construimos el mazo de cartas */
 const buidDeck = () => {
     const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     const types = ["C", "D", "H", "S"];
@@ -91,6 +94,7 @@ const buidDeck = () => {
         }
     }
 }
+/* Mezclamos el mazo de cartas */
 const shuffleDeck = () => {
     for(let i = 0; i < deck.length; i++){
         let j = Math.floor(Math.random() * deck.length);
@@ -99,18 +103,17 @@ const shuffleDeck = () => {
         deck[j] = shuff;
     }
 }
+/* Valorizamos las cartas */
 const getValue = (card) => {
     let data = card.split("-");
     let value = data[0];
     if(isNaN(value)){
         if(value == "A"){
             return 11;
-        } else {
-            return 10;
         }
-    } else {
-        return parseInt(value);
+        return 10;
     }
+    return parseInt(value);
 }
 const checkAce = (card) => {
     if( card[0]== "A"){
@@ -118,8 +121,16 @@ const checkAce = (card) => {
     }
     return 0;
 }
+const reduceAce = (playerSum, playerAceCount) => {
+    while(playerSum > 21 && playerAceCount > 0){
+        playerSum -= 10;
+        playerAceCount -= 1;
+    }
+    return playerSum;
+}
+/* Botones del juego */
 const hitMe = () => {
-    if(!canHit || theBet == 0){
+    if(!canHit){
         return
     }
     let cardImg = document.createElement("img");
@@ -133,13 +144,16 @@ const hitMe = () => {
     if(reduceAce(yourSum, yourAceCount) > 21){
         canHit = false;
     }
-}
-const reduceAce = (yourSum, yourAceCount) => {
-    while(yourSum > 21 && yourAceCount > 0){
-        yourSum -= 10;
-        yourAceCount -= 1;
+    if (yourSum > 21){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "You're Busted! Your card count was: " + yourSum,
+        })
+        theBet = 0;
+        updateScreen();
+        startGame();
     }
-    return yourSum;
 }
 const stayPut = () => {
     const hiddenCard = document.getElementById("hidden");
@@ -160,7 +174,18 @@ const stayPut = () => {
             console.log("dealer sum: ", dealerSum);
         }  
     }, 1500)
+
+    if (dealerSum > 21){
+        money += (theBet * 2);
+    } else if (yourSum == dealerSum){
+        money += theBet;
+    } else if (yourSum > dealerSum){
+        money += (theBet * 2);
+    } else if ( yourSum < dealerSum){
+        theBet= 0;
+    }
 }
+/* Sistema de apuestas */
 const oneK = () => {
     if(money >= 1000){
         theBet += 1000;
@@ -168,8 +193,8 @@ const oneK = () => {
         updateScreen();
     } else {
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
+            icon: 'question',
+            title: 'Null',
             text: 'You ran out of money!',
         })
     }
@@ -181,7 +206,7 @@ const tenK = () => {
         updateScreen();
     } else {
         Swal.fire({
-            icon: 'error',
+            icon: 'question',
             title: 'Oops...',
             text: 'You ran out of money!',
         })
@@ -194,7 +219,7 @@ const hundredK = () => {
         updateScreen();
     } else {
         Swal.fire({
-            icon: 'error',
+            icon: 'question',
             title: 'Oops...',
             text: 'You ran out of money!',
         })
@@ -204,6 +229,7 @@ const placeBet = () =>{
     if(theBet == 0){
         return
     }
+    canHit= true;
     document.getElementById("placeBet").style.display = "none";
     console.log("Bet Placed: ", theBet);
     for(let i = 0; i <2; i++){
@@ -215,8 +241,8 @@ const placeBet = () =>{
         yourAceCount += checkAce(card);
         document.getElementById("yourGame").append(cardImg);
     }
+    console.log("My sum: ", yourSum);
 }
-
 const updateScreen = () => {
     document.getElementById("money").innerHTML = `${money}`;
     document.getElementById("currentBet").innerHTML = `${theBet}`;
