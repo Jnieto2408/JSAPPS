@@ -10,11 +10,12 @@ let yourSum = 0;
 let dealerAceCount = 0;
 let yourAceCount = 0;
 let canHit = false;
+let canStay = false;
 let deck = [];
 let hidden = "";
 let money = 3000;
+let moneyStorage = 0;
 let theBet = 0;
-let lives = 3;
 
 /* Inicializamos el juego */
 start.addEventListener("click", () => {
@@ -23,6 +24,9 @@ start.addEventListener("click", () => {
     buidDeck();
     shuffleDeck();
     startGame();
+    if(JSON.parse(localStorage.getItem("money")) === null){
+        localStorage.setItem("money", "3000");
+    }
 })
 const startGame = () => {
     console.clear();
@@ -31,9 +35,15 @@ const startGame = () => {
     dealerAceCount = 0;
     yourAceCount = 0;
     canHit = false;
+    canStay = false;
     hidden = "";
     buidDeck();
     shuffleDeck();
+    moneyStorage = JSON.parse(localStorage.getItem("money"));
+    console.log(typeof moneyStorage, moneyStorage);
+    if(moneyStorage > 3000){
+        money = moneyStorage;
+    }
     game.innerHTML = "";
     game.innerHTML += `
                         <div class="headGame">
@@ -44,14 +54,6 @@ const startGame = () => {
                             <div class="dealer">
                                 <p><b>Dealer</b></p>
                                 <p>Card Count:<span id="dealerCard">0</span></p>
-                            </div>
-                            <div class="lifes">
-                                <div>Lifes</div>
-                                <div class="hearts">
-                                    <i class="fa fa-heart" id="h1"></i>
-                                    <i class="fa fa-heart" id="h2"></i>
-                                    <i class="fa fa-heart" id="h3"></i>
-                                </div>
                             </div>
                         </div>
                         <div class="actualGame">
@@ -73,7 +75,7 @@ const startGame = () => {
                                 <p>Card Count:<span id="youCard">0</span></p>
                                 <p><b>YOU</b></p>
                             </div>
-                            <div class="blackjackSystem">
+                            <div class="blackjackSystem" id="blackjackSystem">
                                 <button class="placeBet" id="placeBet" onClick="placeBet()">Place Bet</button>
                                 <button onClick="hitMe()">Hit</button>
                                 <button onClick="stayPut()">Stay</button>
@@ -149,6 +151,7 @@ const hitMe = () => {
     yourSum += getValue(card);
     yourAceCount += checkAce(card);
     yourGame.append(cardImg);
+    userCounting();
     console.log("My sum: ", yourSum);
     if(reduceAce(yourSum, yourAceCount) > 21){
         canHit = false;
@@ -161,20 +164,22 @@ const hitMe = () => {
                 text: "You're Busted! Your card count was: " + yourSum,
             })
             theBet = 0;
-            updateScreen();
-            startGame();
+            dealNew();
         }
     },500)
 
 }
 const stayPut = () => {
+    if(!canStay){
+        return
+    }
     const hiddenCard = document.getElementById("hidden");
     hiddenCard.src= "../img/cards/" + hidden + ".png";
     dealerSum = reduceAce(dealerSum, dealerAceCount);
-    console.log("reduce ace dealer: ", dealerSum);
     yourSum = reduceAce(yourSum, yourAceCount);
+    userCounting();
     canHit = false;
-    setTimeout(() => {
+/*     setTimeout(() => { */
         while (dealerSum < 17){
             let cardImg = document.createElement("img");
             let card = deck.pop();
@@ -183,27 +188,26 @@ const stayPut = () => {
             dealerSum += getValue(card);
             dealerAceCount += checkAce(card);
             document.getElementById("dealerGame").append(cardImg);
+            dealerCounting();
             console.log("dealer sum: ", dealerSum);
-        }  
-    }, 1500)
-    if(dealerSum < 17){
-        setTimeout(() => {
             evaluate();
-        },2000)
-    }
+        }  
+/*     }, 1500); */
+    evaluate();
 }
 const evaluate = () => {
-    if (dealerSum > 21){
+    if(dealerSum < 17){
+        return
+    } else if (dealerSum > 21 || yourSum > dealerSum){
         setTimeout(() => {
             money += (theBet * 2);
             Swal.fire({
                 icon: 'success',
-                title: 'Dealer busted...You win!',
+                title: 'You win!',
                 text: "You just earned: " + (theBet * 2),
             })
             theBet = 0;
-            updateScreen();
-            startGame();
+            dealNew();
         },500)
     } else if (yourSum == dealerSum){
         setTimeout(() => {
@@ -214,22 +218,9 @@ const evaluate = () => {
                 text: "Try beat me next time",
             })
             theBet = 0;
-            updateScreen();
-            startGame();
+            dealNew();
         },500)
-    } else if (yourSum > dealerSum){
-        setTimeout(() => {
-            money += (theBet * 2);
-            Swal.fire({
-                icon: 'success',
-                title: 'You win!',
-                text: "You just earned: " + (theBet * 2),
-            })
-            theBet = 0;
-            updateScreen();
-            startGame();            
-        },500)
-    } else if ( yourSum < dealerSum){
+    } else if (yourSum < dealerSum){
         setTimeout(() => {
             Swal.fire({
                 icon: 'error',
@@ -237,8 +228,7 @@ const evaluate = () => {
                 text: "Dealer had a better game, " + dealerSum + " > " + yourSum,
             })
             theBet = 0;
-            updateScreen();
-            startGame();
+            dealNew();
         },500)
     }
 }
@@ -287,6 +277,7 @@ const placeBet = () =>{
         return
     }
     canHit= true;
+    canStay= true;
     document.getElementById("placeBet").style.display = "none";
     console.log("Bet Placed: ", theBet);
     for(let i = 0; i <2; i++){
@@ -298,9 +289,32 @@ const placeBet = () =>{
         yourAceCount += checkAce(card);
         document.getElementById("yourGame").append(cardImg);
     }
+    userCounting();
     console.log("My sum: ", yourSum);
 }
 const updateScreen = () => {
     document.getElementById("money").innerHTML = `$${money}`;
     document.getElementById("currentBet").innerHTML = `$${theBet}`;
+}
+const dealerCounting = () => {
+    document.getElementById("dealerCard").innerHTML = `${dealerSum}`;
+}
+const userCounting = () => {
+    document.getElementById("youCard").innerHTML = `${yourSum}`;
+}
+const dealNew = () => {
+    let gameButton = document.createElement("button");
+    gameButton.className = "placeBet";
+    gameButton.innerHTML= "New Deal";
+    document.getElementById("blackjackSystem").appendChild(gameButton);
+    gameButton.addEventListener("click", () => {
+        if(money>3000){
+            moneyStorage = JSON.stringify(money);
+        } else {
+            moneyStorage = 3000;
+        }
+        localStorage.setItem("money",JSON.stringify(moneyStorage));
+        updateScreen();
+        startGame();
+    })
 }
