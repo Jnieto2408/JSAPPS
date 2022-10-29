@@ -2,7 +2,6 @@
 const start = document.getElementById("start");
 const remove = document.getElementById("remove");
 const game = document.getElementById("game");
-const hiddenCard = document.getElementById("hidden");
 
 let dealerSum = 0;
 let yourSum = 0;
@@ -29,11 +28,11 @@ const startGame = () => {
                         <div class="headGame">
                             <div class="money">
                                 <p>Money:</p>
-                                <p class="cash" id="money">$1000</p>
+                                <p class="cash" id="money">$${money}</p>
                             </div>
                             <div class="dealer">
                                 <p><b>Dealer</b></p>
-                                <p>Card Count:<span id="dealerCard">21</span></p>
+                                <p>Card Count:<span id="dealerCard">0</span></p>
                             </div>
                             <div class="lifes">
                                 <div>Lifes</div>
@@ -52,7 +51,7 @@ const startGame = () => {
                         </div>
                         <div class="gameControls">
                             <div class="betSystem">
-                                <p>CURRENT BET:<span id="currentBet">$1000</span></p>
+                                <p>CURRENT BET:<span id="currentBet">${theBet}</span></p>
                                 <div>
                                     <button onClick="oneK()">1k</button>
                                     <button onClick="tenK()">10k</button>
@@ -60,11 +59,11 @@ const startGame = () => {
                                 </div>
                             </div>
                             <div class="you">
-                                <p>Card Count:<span id="youCard">21</span></p>
+                                <p>Card Count:<span id="youCard">0</span></p>
                                 <p><b>YOU</b></p>
                             </div>
                             <div class="blackjackSystem">
-                                <button class="placeBet" onClick="placeBet()">Place Bet</button>
+                                <button class="placeBet" id="placeBet" onClick="placeBet()">Place Bet</button>
                                 <button onClick="hitMe()">Hit</button>
                                 <button onClick="stayPut()">Stay</button>
                             </div>
@@ -72,7 +71,15 @@ const startGame = () => {
     `
     hidden = deck.pop();
     dealerSum += getValue(hidden);
+    console.log("hidden value: ", dealerSum);
     dealerAceCount += checkAce(hidden);
+    let cardImg = document.createElement("img");
+    let card = deck.pop();
+    cardImg.src= "../img/cards/" + card + ".png";
+    cardImg.className= "card";
+    document.getElementById("dealerGame").append(cardImg);
+    dealerSum += getValue(card);
+    console.log("First dealer sum: ", dealerSum);
 };
 const buidDeck = () => {
     const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -91,7 +98,6 @@ const shuffleDeck = () => {
         deck[i] = deck[j];
         deck[j] = shuff;
     }
-    console.log(deck);
 }
 const getValue = (card) => {
     let data = card.split("-");
@@ -113,7 +119,7 @@ const checkAce = (card) => {
     return 0;
 }
 const hitMe = () => {
-    if(!canHit){
+    if(!canHit || theBet == 0){
         return
     }
     let cardImg = document.createElement("img");
@@ -123,6 +129,7 @@ const hitMe = () => {
     yourSum += getValue(card);
     yourAceCount += checkAce(card);
     yourGame.append(cardImg);
+    console.log("My sum: ", yourSum);
     if(reduceAce(yourSum, yourAceCount) > 21){
         canHit = false;
     }
@@ -135,32 +142,70 @@ const reduceAce = (yourSum, yourAceCount) => {
     return yourSum;
 }
 const stayPut = () => {
+    const hiddenCard = document.getElementById("hidden");
+    hiddenCard.src= "../img/cards/" + hidden + ".png";
     dealerSum = reduceAce(dealerSum, dealerAceCount);
+    console.log("reduce ace dealer: ", dealerSum);
     yourSum = reduceAce(yourSum, yourAceCount);
     canHit = false;
-    hiddenCard.src= "../img/cards/" + hidden + ".png";
+    setTimeout(() => {
+        while (dealerSum < 17){
+            let cardImg = document.createElement("img");
+            let card = deck.pop();
+            cardImg.src= "../img/cards/" + card + ".png";
+            cardImg.className= "card";
+            dealerSum += getValue(card);
+            dealerAceCount += checkAce(card);
+            document.getElementById("dealerGame").append(cardImg);
+            console.log("dealer sum: ", dealerSum);
+        }  
+    }, 1500)
 }
 const oneK = () => {
-    console.log("1k");
+    if(money >= 1000){
+        theBet += 1000;
+        money -= 1000;
+        updateScreen();
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You ran out of money!',
+        })
+    }
 }
 const tenK = () => {
-    console.log("10k");
+        if(money >= 10000){
+        theBet += 10000;
+        money -= 10000;
+        updateScreen();
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You ran out of money!',
+        })
+    }
 }
 const hundredK = () => {
-    console.log("100k");
+        if(money >= 100000){
+        theBet += 100000;
+        money -= 100000;
+        updateScreen();
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You ran out of money!',
+        })
+    }
 }
 const placeBet = () =>{
-    console.log("placeBet");
-        while (dealerSum < 17){
-        let cardImg = document.createElement("img");
-        let card = deck.pop();
-        cardImg.src= "../img/cards/" + card + ".png";
-        cardImg.className= "card";
-        dealerSum += getValue(card);
-        dealerAceCount += checkAce(card);
-        document.getElementById("dealerGame").append(cardImg);
+    if(theBet == 0){
+        return
     }
-    console.log(dealerSum)
+    document.getElementById("placeBet").style.display = "none";
+    console.log("Bet Placed: ", theBet);
     for(let i = 0; i <2; i++){
         let cardImg = document.createElement("img");
         let card = deck.pop();
@@ -170,4 +215,9 @@ const placeBet = () =>{
         yourAceCount += checkAce(card);
         document.getElementById("yourGame").append(cardImg);
     }
+}
+
+const updateScreen = () => {
+    document.getElementById("money").innerHTML = `${money}`;
+    document.getElementById("currentBet").innerHTML = `${theBet}`;
 }
