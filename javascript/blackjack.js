@@ -12,7 +12,7 @@ let yourAceCount = 0;
 let canHit = false;
 let deck = [];
 let hidden = "";
-let money = 1000;
+let money = 3000;
 let theBet = 0;
 let lives = 3;
 
@@ -25,6 +25,15 @@ start.addEventListener("click", () => {
     startGame();
 })
 const startGame = () => {
+    console.clear();
+    dealerSum = 0;
+    yourSum = 0;
+    dealerAceCount = 0;
+    yourAceCount = 0;
+    canHit = false;
+    hidden = "";
+    buidDeck();
+    shuffleDeck();
     game.innerHTML = "";
     game.innerHTML += `
                         <div class="headGame">
@@ -53,7 +62,7 @@ const startGame = () => {
                         </div>
                         <div class="gameControls">
                             <div class="betSystem">
-                                <p>CURRENT BET:<span id="currentBet">${theBet}</span></p>
+                                <p>CURRENT BET:<span id="currentBet">$${theBet}</span></p>
                                 <div>
                                     <button onClick="oneK()">1k</button>
                                     <button onClick="tenK()">10k</button>
@@ -144,16 +153,19 @@ const hitMe = () => {
     if(reduceAce(yourSum, yourAceCount) > 21){
         canHit = false;
     }
-    if (yourSum > 21){
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "You're Busted! Your card count was: " + yourSum,
-        })
-        theBet = 0;
-        updateScreen();
-        startGame();
-    }
+    setTimeout(() => {
+        if (yourSum > 21){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "You're Busted! Your card count was: " + yourSum,
+            })
+            theBet = 0;
+            updateScreen();
+            startGame();
+        }
+    },500)
+
 }
 const stayPut = () => {
     const hiddenCard = document.getElementById("hidden");
@@ -174,15 +186,60 @@ const stayPut = () => {
             console.log("dealer sum: ", dealerSum);
         }  
     }, 1500)
-
+    if(dealerSum < 17){
+        setTimeout(() => {
+            evaluate();
+        },2000)
+    }
+}
+const evaluate = () => {
     if (dealerSum > 21){
-        money += (theBet * 2);
+        setTimeout(() => {
+            money += (theBet * 2);
+            Swal.fire({
+                icon: 'success',
+                title: 'Dealer busted...You win!',
+                text: "You just earned: " + (theBet * 2),
+            })
+            theBet = 0;
+            updateScreen();
+            startGame();
+        },500)
     } else if (yourSum == dealerSum){
-        money += theBet;
+        setTimeout(() => {
+            money += theBet;
+            Swal.fire({
+                icon: 'question',
+                title: 'Game tied',
+                text: "Try beat me next time",
+            })
+            theBet = 0;
+            updateScreen();
+            startGame();
+        },500)
     } else if (yourSum > dealerSum){
-        money += (theBet * 2);
+        setTimeout(() => {
+            money += (theBet * 2);
+            Swal.fire({
+                icon: 'success',
+                title: 'You win!',
+                text: "You just earned: " + (theBet * 2),
+            })
+            theBet = 0;
+            updateScreen();
+            startGame();            
+        },500)
     } else if ( yourSum < dealerSum){
-        theBet= 0;
+        setTimeout(() => {
+            Swal.fire({
+                icon: 'error',
+                title: 'You lost!',
+                text: "Dealer had a better game, " + dealerSum + " > " + yourSum,
+            })
+            theBet = 0;
+            updateScreen();
+            startGame();
+        },500)
     }
 }
 /* Sistema de apuestas */
@@ -244,6 +301,6 @@ const placeBet = () =>{
     console.log("My sum: ", yourSum);
 }
 const updateScreen = () => {
-    document.getElementById("money").innerHTML = `${money}`;
-    document.getElementById("currentBet").innerHTML = `${theBet}`;
+    document.getElementById("money").innerHTML = `$${money}`;
+    document.getElementById("currentBet").innerHTML = `$${theBet}`;
 }
